@@ -1,0 +1,128 @@
+= Machine Setup
+:sectnums:
+:github-url: https://github.com/KeishiS
+
+== Machineの主要構成
+
+以降の記述に従えば，自分と（ほぼ）同じ環境を構築できる．
+
+Disk encryption: link:https://wiki.archlinux.jp/index.php/Dm-crypt/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%85%A8%E4%BD%93%E3%81%AE%E6%9A%97%E5%8F%B7%E5%8C%96[LUKS on LVM]::
+    暗号化の方法の1つとしてこちらを採用している．後述の構築方法ではswap領域は暗号化できていない点に留意．復号化はパスワードを入力するのではなく，USBメモリに入れた復号化キーを使用する設定を採用．
+OS: link:https://archcraft.io/[Archcraft]::
+    ArchLinux系distroのうち，柔軟なインストール方法を提供しているものとして採用．USBメモリに格納したluksキーを用いて復号化するLUKS on LVM構成を実現するのに，Calamares installerを採用しているdistroは不便という理由もある．
+window manager: link:https://i3wm.org/[i3wm]::
+    タイル型が好きという理由で採用．swayも興味あるがwaylandとfcitx-mozcの設定がうまくできなかったためまだ避けている．
+terminal: link:https://wezfurlong.org/wezterm/[WezTerm]::
+    日本語入力できて，fallback fontが設定できて，ligature fontも使えて，細かいところにも手が届く有能ターミナルエミュレータ
+
+== 事前情報 : ディスク構成
+
+ディスク名は読み込み順等で変動するため，個々の環境に応じて読み換えていただくとして，以降では便宜上，下記の通り記述する．
+
+`/dev/sda`::
+    OSをインストールする物理ディスクの1つ．UEFIブートのための領域もここに確保する．
+`/dev/sdb`::
+    OSをインストールする物理ディスクその2．こちらはLVM領域のみで構成する．
+`/dev/sdc`::
+    USBメモリで，ここに鍵を入れておく想定．
+`/dev/sdd`::
+    ArchcraftのISOが入っているUSBメモリ
+
+== 復号化キーの準備
+
+USBメモリを初期化して鍵を作成する．
+
+[source,shell]
+--
+# ファイルシステムの作成
+mkfs.vfat -F 32 -n KEYCASE /dev/sdc
+
+# 鍵の作成: 長さはお好みで
+dd if=/dev/urandom of=./keyfile bs=1 count=2048
+
+# 保存
+mount /dev/disk/by-label/KEYCASE /mnt
+cp ./keyfile /mnt/keyfile
+umount /mnt
+--
+
+== パーティションの準備
+
+下記のようなパーティション構成になるよう， `gdisk` 等でテーブルを作成する．
+
+[source,shell]
+--
+> gdisk -l /dev/sda
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            xxxx         xxxxxxx   xxxx.x MiB  EF00  EFI system partition
+   2         xxxxxxx      xxxxxxxxxx   xxx.x GiB   8E00  Linux LVM
+
+> gdisk -l /dev/sdb
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            xxxx       xxxxxxxxx   xxx.x GiB   8E00  Linux LVM
+--
+
+LVMで論理ボリュームを作成していく．このあたりは好みだが，自分の場合は細かく分ける利点がないため，以降ではswap領域とroot領域の2つのみを作成している．
+
+[source,shell]
+--
+# 物理ボリュームの作成
+pvcreate /dev/sda2 /dev/sdb1
+
+# ボリュームグループの作成
+vgcreate archcraft /dev/sda2 /dev/sdb1
+
+# 論理ボリュームの作成
+lvcreate --name swap -L xxGB archcraft
+lvcreate --name root -l 100%FREE archcraft
+
+# LUKSによる暗号化
+mkdir ./mnt
+mount /dev/disk/by-label/KEYCASE ./mnt
+cryptsetup luksFormat --key-file ./mnt/keyfile /dev/mapper/archcraft-root
+
+# ファイルシステムの作成
+mkfs.vfat -F 32 /dev/sda1
+mkswap /dev/mapper/archcraft-swap
+
+cryptsetup open --key-file ./mnt/keyfile /dev/mapper/archcraft-root unlocked
+mkfs.ext4 /dev/mapper/unlocked
+--
+
+== OSのインストール
+
+上記の作業をUSBブートしたArchcraft上でも，別のLinux環境下で実施しても問題ない．
+以降の作業はUSBブートしたArchcraftであることを想定する．
+
+. `Archcraft installer (CLI)` の実行: 案内に沿って選択していくだけだが，ここではブートマネージャに `systemd-boot` を採用
+. installer 終了後，terminal を開いて xref:after-install-os[後述の作業]を実施
+
+[source,shell]
+.<<after-install-os, OSインストール後の作業>>
+--
+mount /dev/mapper/archcraft-root /mnt
+mount /dev/sda1 /mnt/boot
+arch-chroot /mnt
+> nano /etc/mkinitcpio.conf
+# ここで MODULES に vfat を追記
+# HOOKS に encrypt を追記
+> mkinitcpio -p linux
+> nano /boot/loader/entries/archcraft.conf
+# options に cryptkey=/dev/disk/by-label/KEYCASE:vfat:/keyfile を追記
+--
+
+以上でOSのセットアップは完了．
+
+== 作業環境の整備
+
+残っている細々した設定を行う．なるべくコマンド実行で完結するようにしているが，一部GUIでの操作が必要な箇所がある．
+
+. 作業ユーザでログイン
+. `git clone {github-url}/dotfiles.git ~/dotfiles`
+. `sudo pacman -S - < ~/dotfiles/pacman.list`
+. `yay -S - < ~/dotfiles/yay.list`
+. `source ~/dotfiles/setup.sh`
+. 一旦再起動
+. [GUI操作] fcitx5-mozcの設定を実施
+
+以上で一通りの作業が完了．

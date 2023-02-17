@@ -1,7 +1,7 @@
 site:
   title: KeishiS HOME
   url: https://KeishiS.github.io
-  start_page: home::index.adoc
+  start_page: docs::index.adoc
 content:
   sources:
     - url: .
@@ -9,6 +9,6 @@ content:
 
 ui:
   bundle:
-    url: https://gitlab.nobuta05/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
 output:
   dir: public

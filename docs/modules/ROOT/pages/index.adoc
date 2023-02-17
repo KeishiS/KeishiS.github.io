@@ -1,11 +1,9 @@
-= KeishiS HOME
-
-== Vitae
+= Vitae
 
 Name::
     Keishi Sando
 Education::
-    * March 2020, University of Tsukuba, Master's course
+    * April 2018 - March 2020 : University of Tsukuba, Master's course
 Interest::
     * relational data analysis
     * statistical inference
