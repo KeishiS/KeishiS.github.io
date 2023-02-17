@@ -1,0 +1,3 @@
+= README
+
+このリポジトリで提供しているpageは link:https://antora.org/[Antora]を用いて生成されています．AntoraはAsciiDocで記述できる静的サイトジェネレータで，詳細は公式ページのdocsを読んで頂くことが最適です．いくつかの用語については link:https://qiita.com/nobuta05/items/623f7d98f849e5d899c2[こちらのQiita記事]にて説明しています．
