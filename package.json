@@ -1,0 +1,12 @@
+{
+  "name": "KeishiS.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "KeishiS <sando.keishi.sp@alumni.tsukuba.ac.jp>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@antora/cli": "3.1",
+    "@antora/site-generator": "3.1"
+  }
+}
