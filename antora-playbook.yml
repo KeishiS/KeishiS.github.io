@@ -2,7 +2,11 @@ site:
   title: KeishiS HOME
   url: https://KeishiS.github.io
   start_page: docs::index.adoc
-  author: Keishi Sando
+  keys:
+    author: Keishi Sando
+    icon: https://github.com/KeishiS.png
+    github: https://github.com/KeishiS
+    twitter: https://twitter.com/nobuta05
 content:
   sources:
     - url: .
@@ -14,3 +18,8 @@ ui:
     url: /home/nobuta05/Gits/antora-ui-default/build/ui-bundle.zip
 output:
   dir: public
+
+asciidoc:
+  attributes:
+    author: "Keishi Sando"
+    sectnums: all
