@@ -2,7 +2,7 @@
 
 Name::
     Keishi Sando
-Education::
+Career::
     * April 2018 - March 2020 : University of Tsukuba, Master's course
 Interest::
     * relational data analysis
