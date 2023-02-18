@@ -1,7 +1,9 @@
 {
   "name": "KeishiS.github.io",
   "version": "1.0.0",
-  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/antora antora-playbook.yml"
+  },
   "author": "KeishiS <sando.keishi.sp@alumni.tsukuba.ac.jp>",
   "license": "MIT",
   "private": false,

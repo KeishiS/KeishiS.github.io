@@ -14,8 +14,7 @@ content:
 
 ui:
   bundle:
-    # url: https://github.com/KeishiS/antora-ui-default/releases/download/v0.1.1/ui-bundle.zip
-    url: /home/nobuta05/Gits/antora-ui-default/build/ui-bundle.zip
+    url: https://github.com/KeishiS/antora-ui-default/releases/download/v0.2.0/ui-bundle.zip
 output:
   dir: public
 
