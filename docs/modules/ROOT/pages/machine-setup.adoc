@@ -1,5 +1,4 @@
 = Machine Setup
-:sectnums:
 :github-url: https://github.com/KeishiS
 
 == Machineの主要構成
@@ -100,14 +99,14 @@ mkfs.ext4 /dev/mapper/unlocked
 [source,shell]
 .<<after-install-os, OSインストール後の作業>>
 --
-mount /dev/mapper/archcraft-root /mnt
-mount /dev/sda1 /mnt/boot
-arch-chroot /mnt
-> nano /etc/mkinitcpio.conf
-# ここで MODULES に vfat を追記
+> mount /dev/mapper/unlocked /mnt
+> mount /dev/sda1 /mnt/boot
+> arch-chroot /mnt
+>> nano /etc/mkinitcpio.conf
+# MODULES に vfat を追記
 # HOOKS に encrypt を追記
-> mkinitcpio -p linux
-> nano /boot/loader/entries/archcraft.conf
+>> mkinitcpio -p linux
+>> nano /boot/loader/entries/archcraft.conf
 # options に cryptkey=/dev/disk/by-label/KEYCASE:vfat:/keyfile を追記
 --
 
