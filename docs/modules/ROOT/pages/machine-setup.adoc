@@ -1,5 +1,4 @@
 = Machine Setup
-:sectnums:
 :github-url: https://github.com/KeishiS
 
 == Machineの主要構成
