@@ -2,15 +2,39 @@
 
 Name::
     Keishi Sando
-Career::
-    * April 2018 - March 2020 : University of Tsukuba, Master's course
 Interest::
     * relational data analysis
     * statistical inference
     * Julialang
     * competitive programming
 Journal Papers::
-    1. hoge
-    2. huga
+    1. Keishi Sando, Hideitsu Hino, "Modal Principal Component Analysis", Neural Computation, 2020.10
+    2. Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, "Information Geometry of Modal Linear Regression", Information Geometry, 2019.6
+Refered International Conferences::
+    1. Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, “Information Geometric Perspective of Modal Linear Regression”, The 25th International Conference on Neural Information Processing (ICONIP2018), 2018.12 (Siem Reap, Cambodia)
+Domestic Workshop::
+    1. 三戸圭史，日野英逸，“最頻値推定量を用いた主成分分析の提案”，第39回情報論的学習理論と機械学習研究会（IBISML），2020.3（京都）, (*a)
+    1. 三戸圭史，赤穂昭太郎，村田昇，日野英逸，“最頻値線形回帰の情報幾何”，第32回情報論的学習理論と機械学習研究会 (IBISML)，2018.3
 Awards::
-    1. hoge
+    1. (*a) IBIS2019 Research Award Finalist
+
+[frame=ends,grid=none]
+.Career
+|===
+| duration | affilliation
+
+| Apr 2023 --
+| Ph.D. student, Statistical Science course @ SOKENDAI
+
+| Aug 2022 -- Mar 2023
+| Research Assistant @ national laboratory
+
+| Mar 2021 -- Jul 2022
+| AI engineer @ startup company
+
+| Apr 2020 -- Feb 2021
+| systems engineer @ telecommunication company
+
+| Apr 2018 -- Mar 2020
+| Master's course @ University of Tsukuba
+|===
