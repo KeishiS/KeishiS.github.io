@@ -125,3 +125,63 @@ mkfs.ext4 /dev/mapper/unlocked
 . [GUI操作] fcitx5-mozcの設定を実施
 
 以上で一通りの作業が完了．
+
+== おまけ：外付けWindowsの設定
+
+基本的な研究活動はLinux distroで完結しますが，大学の書類等がofficeソフトを強要してくるため，遺憾ながら編集環境を整備する必要があります．web版Microsoft 365を使う手段もありますが，たまにレイアウトが崩れたりする場面に遭遇すると安心はできません．
+
+一方で，同一ディスク上でのデュアルブートは，予期しないブートローダの挙動を招いた経験上したくありません．以上の理由から，外付けディスクへWindowsをインストールし，必要な時だけ接続して使うという運用を採用しました．
+
+以降のインストールは，ライセンス認証上問題ないことを各自の環境で確認の上，参考にしてください．また以降の内容は[先駆者の記事](https://blue1st.hateblo.jp/entry/2018/02/18/061620)の内容をそのまま採用している事をご承知おきください．
+
+必要なもの::
+    * 上記でLinuxをインストールしたPC
+    * Windowsのインストール先となる外付けHDD / SSD
+    * WindowsのインストールメディアとなるUSBフラッシュディスク：割当ドライブを `D` とする
+手順::
+    . 外付け記憶媒体へWindowsのインストール：適当なWindows端末で下記を実行
+    .. Windowsのインストールメディア作成：Microsoft公式ページからツールをダウンロードして実施
+    .. 外付け記憶媒体のパーティション作成：WindowsのPowerShellを管理者権限で xref:creating-windows-partition[下記コマンド] を実行
+    .. インストールメディア内の該当OSの割当場所確認： `dism /get-imageinfo /imageFile:D:\sources\install.esd` でインデックスを確認．ここでは `2` と仮定
+    .. Windowsを外付け記憶媒体へ展開： `dism /apply-image /imageFile:D:\sources\install.esd /index:2 /applydir:I:\`
+    .. ブートセクタの作成： `bcdboot i:\Windows /l ja-jp /s s: /f UEFI`
+    . 再起動 & 外付け記憶媒体から起動し，初期設定を実行
+
+[source,shell]
+.<<creating-windows-partition,Windowsのパーティション作成>>
+--
+> diskpart
+# ディスクのフォーマット
+> clean
+
+# パーティション形式の指定
+> convert gpt
+
+# EFI領域の作成 & 初期化 & Sドライブの割当
+> create partition efi size=1024
+> format fs=fat32 quick label="EFI"
+> assign letter=S
+
+# ルート相当の領域作成 & 初期化 & Iドライブの割当
+> create partition primary
+> format fs=ntfs quick label="Windows"
+> assign letter=I
+
+# 終了
+> exit
+--
+
+=== ハードウェアクロックをUTCへ変更
+
+LinuxとWindowsのデュアルブートでおかしくなる事の1つに時刻表示があります．これはハードウェアクロックの管理方法がOSで異なることに起因します．一般にLinuxではUTCを用いるのに対し，Windowsではローカルタイムを採用します．ここではLinuxに合わせるよう，Windows側を修正します．
+
+以降の内容は link:https://hattomo.github.io/posts/main/21/q1/0213-mangae-hardware-clock-windows-utc/[こちらの方の記事]の方法を採用しています．
+
+[source,shell]
+--
+# LocalTime -> UTC のために，管理者権限のコマンドプロンプトで下記を実行
+reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /d 1 -t REG_DWORD /f
+
+# UTC -> LocalTime に戻す場合は下記を実行
+reg delete HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /f
+--
