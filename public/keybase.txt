@@ -1,0 +1,50 @@
+I hereby claim:
+
+  * I am an admin of https://keishis.github.io
+  * I am keishis (https://keybase.io/keishis) on keybase.
+  * I have a public key ASD0k-yCWNadvWp2OVGTNU3q8kjmoVp-I585W1XRknPWdQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120f493ec8258d69dbd6a76395193354deaf248e6a15a7e239f395b55d19273d6750a",
+      "host": "keybase.io",
+      "kid": "0120f493ec8258d69dbd6a76395193354deaf248e6a15a7e239f395b55d19273d6750a",
+      "uid": "57fd7f1cf3ba684e1b29a402374f2419",
+      "username": "keishis"
+    },
+    "merkle_root": {
+      "ctime": 1680339805,
+      "hash": "0b5f4b80801342cf14354d377103e530aed102c3b765a1105d3e44b427b43132296d2ddc11a5a25787a44aa1ee781a5ef9efabb279307179855ba4a1da49af95",
+      "hash_meta": "a7a677854e08436f8347ab06393a61a28a7afbe8230a675526f1285e74da4738",
+      "seqno": 24276903
+    },
+    "service": {
+      "entropy": "1K/yXcIzXALhu7G2HMWalgPV",
+      "hostname": "keishis.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.2"
+  },
+  "ctime": 1680339831,
+  "expire_in": 504576000,
+  "prev": "a72af0acf7bf8b4e33c54917b268acecc1496b4390d447522ac42a5385f1a028",
+  "seqno": 13,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg9JPsgljWnb1qdjlRkzVN6vJI5qFafiOfOVtV0ZJz1nUKp3BheWxvYWTESpcCDcQgpyrwrPe/i04zxUkXsmis7MFJa0OQ1EdSKsQqU4XxoCjEIF0stCEEVL7DQ0zJUXFG1U04ATls4Mc0QO8nfbbvMBdoAgHCo3NpZ8RA/K2rAi8QUfyN6gtSjkJsbYqpSRlfylZ6mCjaL7QmlOtzYDueO+rtCbF/O1PnQrU9sssyAzQLqxO7GpIPdsXnAahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIDPtBIVW4n3emrbBQ4g8Sn6U8AYXNxCXFMzht7HSPpZQo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/keishis
