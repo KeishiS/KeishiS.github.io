@@ -110,6 +110,8 @@ mkfs.ext4 /dev/mapper/unlocked
 # options に cryptkey=/dev/disk/by-label/KEYCASE:vfat:/keyfile を追記
 >> echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 # ビープ音の無効化
+>> nano /etc/systemd/sleep.conf
+# ハイブリッドスリープの設定
 --
 
 以上でOSのセットアップは完了．
