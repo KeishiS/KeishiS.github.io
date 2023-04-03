@@ -19,6 +19,8 @@ Domestic Workshops::
     1. 三戸圭史，赤穂昭太郎，村田昇，日野英逸，“最頻値線形回帰の情報幾何”，第32回情報論的学習理論と機械学習研究会 (IBISML)，2018.3
 Awards::
     1. (*a) IBIS2019 Research Award Finalist
+PGP key::
+    link:https://keybase.io/keishis[see keybase]
 
 [frame=ends,grid=none]
 .Career
