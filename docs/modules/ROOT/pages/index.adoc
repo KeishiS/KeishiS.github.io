@@ -20,7 +20,7 @@ Domestic Workshops::
 Awards::
     1. (*a) IBIS2019 Research Award Finalist
 PGP key::
-    link:https://keybase.io/keishis[see keybase]
+    fingerprint : link:https://keybase.io/keishis[11D7A68D97E0C636DF487CA1C55CCC13D8D16739]
 
 [frame=ends,grid=none]
 .Career
