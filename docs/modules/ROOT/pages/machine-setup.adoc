@@ -108,10 +108,15 @@ mkfs.ext4 /dev/mapper/unlocked
 >> mkinitcpio -p linux
 >> nano /boot/loader/entries/archcraft.conf
 # options に cryptkey=/dev/disk/by-label/KEYCASE:vfat:/keyfile を追記
+
 >> echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 # ビープ音の無効化
+
 >> nano /etc/systemd/sleep.conf
 # ハイブリッドスリープの設定
+
+>> systemctl enable clamav-daemon.service clamav-freshclam.service
+# clamavの有効化
 --
 
 以上でOSのセットアップは完了．
