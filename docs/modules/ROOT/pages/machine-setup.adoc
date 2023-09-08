@@ -113,8 +113,14 @@ mkfs.ext4 /dev/mapper/unlocked
 >> echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 # ビープ音の無効化
 
->> nano /etc/systemd/sleep.conf
-# ハイブリッドスリープの設定
+>> mkdir /etc/systemd/sleep.conf.d
+>> nano /etc/systemd/sleep.conf.d/hybrid-sleep.conf
+# 下記の内容を記述: suspendとhibernateの動作を hybrid suspend に統一
+>>> [Sleep]
+>>> SuspendMode=suspend
+>>> SuspendState=disk
+>>> HibernateMode=suspend
+>>> HibernateState=disk
 
 >> systemctl enable clamav-daemon.service clamav-freshclam.service
 # clamavの有効化
