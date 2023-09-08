@@ -108,6 +108,7 @@ mkfs.ext4 /dev/mapper/unlocked
 >> mkinitcpio -p linux
 >> nano /boot/loader/entries/archcraft.conf
 # options に cryptkey=/dev/disk/by-label/KEYCASE:vfat:/keyfile を追記
+# options に resume=/dev/mapper/archcraft-swap を追記 ## hibernate有効化のため
 
 >> echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 # ビープ音の無効化
