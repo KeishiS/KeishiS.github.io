@@ -1,0 +1,18 @@
+project:
+  type: website
+
+website:
+  title: "KeishiS.github.io"
+  navbar:
+    right:
+      - text: "Posts"
+        href: posts.qmd
+      - icon: github
+        href: https://github.com/KeishiS/keishis.github.io
+format:
+  html:
+    theme: lux
+    css: styles.css
+
+
+

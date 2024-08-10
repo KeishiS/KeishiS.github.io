@@ -1,0 +1,9 @@
+/* css styles */
+dt {
+    font-weight: bold;
+    font-size: large;
+}
+
+dd {
+    margin-left: 20px;
+}
