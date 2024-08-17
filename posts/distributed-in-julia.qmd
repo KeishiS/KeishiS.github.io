@@ -3,7 +3,7 @@ title: "Tutorial on Distributed Computing in Julia"
 description: "`Distributed.jl`を使った分散処理のTipsについて"
 author: "KeishiS"
 date: "2024-08-10T12:00:00"
-categories: [julialang, computer]
+categories: [julialang, computer, draft]
 image: "../../assets/computer.png"
 ---
 
