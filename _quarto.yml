@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+  resources: .well-known
 
 website:
   title: "KeishiS.github.io"

@@ -1,0 +1,53 @@
+https://keybase.io/keishis
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.keishis.xyz
+  * I am keishis (https://keybase.io/keishis) on keybase.
+  * I have a public key ASDyPyfRinpp-GDyDrd6_fQBWj_wZfabKCTbCFWbW4_aqQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120f493ec8258d69dbd6a76395193354deaf248e6a15a7e239f395b55d19273d6750a",
+      "host": "keybase.io",
+      "kid": "0120f23f27d18a7a69f860f20eb77afdf4015a3ff065f69b2824db08559b5b8fdaa90a",
+      "uid": "57fd7f1cf3ba684e1b29a402374f2419",
+      "username": "keishis"
+    },
+    "merkle_root": {
+      "ctime": 1724132588,
+      "hash": "aa5eaaf763e6b15f6fe39054c4f07d26b5f07b2be9c34642d392855b8e6823d4022d7d45f3b7297a34d444b7f0e0690ef9c7ab246698cb1174978b076100d8f4",
+      "hash_meta": "f3febc2fa6aa1173fba01688044d7a8843c5cdbdeda04aae4f0918830d7421e6",
+      "seqno": 26026616
+    },
+    "service": {
+      "entropy": "hEG9d7Ozl3g2rYzqAhtAgNyb",
+      "hostname": "www.keishis.xyz",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.3.1"
+  },
+  "ctime": 1724132654,
+  "expire_in": 504576000,
+  "prev": "bcc7086d638d5b18b3c8e18aec3d9203073a779545fc0755e442be24f9368534",
+  "seqno": 25,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg8j8n0Yp6afhg8g63ev30AVo/8GX2mygk2whVm1uP2qkKp3BheWxvYWTESpcCGcQgvMcIbWONWxizyOGK7D2SAwc6d5VF/AdV5EK+JPk2hTTEIP8I++4/tZZ61GYtbJaXhrOZbxCGIZ4Fh72u5/99zzfxAgHCo3NpZ8RAjwP0XwKS0oekWPYVIFsFNowsGcZ0AdWuB3kDnoc0XNFtnShDyRS4ceCfl0dStSxYi91iStA/95O0OCNXi3K0B6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIEfKIY8Axsvfr85VEslci3bQHme/xeUtkD/8pRoWSZSAo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/keishis
