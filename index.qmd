@@ -2,7 +2,7 @@
 title: "Vitae"
 image: https://github.com/KeishiS.png
 about:
-  template: marquee
+  template: solana
   links:
     - icon: twitter
       text: Bluesky
@@ -13,7 +13,9 @@ about:
     - icon: key
       text: Keybase
       href: https://keybase.io/keishis
-
+format:
+  html:
+    page-layout: full
 ---
 
 Name
@@ -47,7 +49,7 @@ Awards
 
 | duration | affiliation |
 |:---------|:------------|
-| Apr 2023 - | Ph.D. student, Statistical Science program @ SOKENDAI |
+| Apr 2023 - | Ph.D. student @ Department of Statistical Science, The Graduate University for Advanced Studies, SOKENDAI |
 | Aug 2022 - Mar 2023 | Research Assistant @ national laboratory |
 | Mar 2021 - Jul 2022 | AI Engineer @ startup company |
 | Apr 2020 - Feb 2021 | System Engineer @ telecommunication company |
