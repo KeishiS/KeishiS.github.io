@@ -1,0 +1,31 @@
+#cloud-config
+autoinstall:
+  version: 1
+  refresh-installer:
+    update: true
+  identity:
+    hostname: ubuntu-keishis-vm
+    username: keishis
+    password: "$6$FlXH7/vER13wjoQx$.cavce116EUsRWISViNr1AkURrCWFL6bCMr3xv9xPAI77v7obknrnKNNsth9zVcMnUpUDFjFtT492Vi3Gxbqo0"
+  source:
+    id: ubuntu-server
+    search_drivers: true
+  apt:
+    preserve_sources_list: false
+    geoip: true
+    fallback: abort
+  ssh:
+    install_server: true
+    authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICLPYWxCTckCVdDiBpiKWE8omDndrvQhWkscX8uIyd1j openpgp:0xD1E438FC
+  locale: en_US
+  keyboard:
+    layout: jp
+  timezone: Asia/Tokyo
+  packages:
+    - git
+  snaps:
+    - name: helix
+      classic: true
+    - name: nvim
+      classic: true
