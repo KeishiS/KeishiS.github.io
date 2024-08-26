@@ -3,7 +3,7 @@ title: "UbuntuでAutoinstall"
 description: "subiquityの自動インストール機能でyamlファイルからプロビジョニング"
 author: "KeishiS"
 date: "2024-08-26T23:30:00"
-categories: [computer]
+categories: [ubuntu, computer]
 image: "../../assets/computer.png"
 ---
 
