@@ -1,0 +1,128 @@
+---
+title: "UbuntuでAutoinstall"
+description: "subiquityの自動インストール機能でyamlファイルからプロビジョニング"
+author: "KeishiS"
+date: "2024-08-26T23:30:00"
+categories: [computer]
+image: "../../assets/computer.png"
+---
+
+## 導入
+
+プライベートではArchLinuxとNixOSしか使ってないので， `configuration.nix` に書くかゴリゴリにシェルスクリプト書くかで普段プロビジョニングしています．
+しかし最近，作業場というか遊び場というか仕事場的な環境で動いているLinuxサーバを気にすることがあり，将来的には設定内容をファイルへ書き出す状態にしたいと思いました．
+というのも，あるあるな事例ですが，代々のサーバ運用の担当者はそれが本業ではないため，片手間で設定を継ぎ足し，保守してきた結果，全容把握が大変な状況になってきちゃいました．
+
+現状のコード化も追々やるとして，近々クラスタに新たなマシンを加えたいため，これのプロビジョニングと環境構築をすべてコード化したいと思っており，
+この記事はそのために情報収集した一部を整理した内容となっています．
+
+## 本記事で触れる事
+
+上記の命題は多くの組織が直面する問題のため，数多くの対処方法がネット上に公開されています．
+問題はその中から，組織やシステム規模・予算・将来的な管理者の負担等を加味した上で，自分たちにベターな選択肢を選ぶことにあります．
+本記事では，
+
+* 対象は物理サーバで
+* 金銭的追加予算はなく
+* 管理者は一定のLinux知識を有し
+* 現状をコードに書き出すための1stステップ
+
+という前提であるとします．その上で，
+
+* subiquityのAutoinstallを使い，Ansibleでアクセス可能な環境をyamlファイルからプロビジョニングし
+* Ansibleを使って詳細なセッティングを行う
+
+という手順で問題解決することを想定します．後者についてはネット上に十分情報があるため，
+本記事では前者の手順について調べた結果を紹介します．
+
+## 動作環境
+
+実際のプロビジョニング先は物理サーバですが，色々試行錯誤する用途として物理サーバは利便性が悪いです．
+そのため本記事ではVirtualBox上の仮想マシンを想定して説明します．
+一応，詳細なバージョンもまとめておくと以下のとおりです．
+
+* ホストOS: ArchLinux, kernel: 6.10.6-arch1-1
+    * VirtualBox 7.0.20
+* ゲストOS: Ubuntu-Server 24.04
+
+## SubiquityのAutoinstallについて
+
+[`Subiquity`](https://github.com/canonical/subiquity) は現在Ubuntuで採用されているUbuntu-Serverのインストーラで，
+Ubuntu Desktopのインストーラにおいてもバックエンドで動作しています．デスクトップ版ではGUI，サーバ版でもTUIが提供されており，
+項目を選択していくだけでUbuntuをインストールできる環境が準備されています．1,2台のインストール作業であればそれでも問題ありませんが，
+複数台であったり，以前の環境を再現したい，という要望がある場合，どの項目を選択したか記録を取る必要があり，かつ手を動かす必要があるという点で手間がかかります．
+Autoinstallはその問題を解決してくれる機能で，Ubuntu-Serverでは20.04以降，Ubuntu-Desktopでは23.04以降で利用可能となっています．
+この機能では設定をテキストファイル，またはそれを反映したインストールメディアとして事前に準備しておき，作業時はそれらを参照することで
+項目選択などの面倒な工程をスキップします．
+
+### AutoinstallとCloud-init
+
+[`Cloud-init`](https://cloudinit.readthedocs.io/en/17.1/index.html) とはクラウド上のインスタンスの
+初期設定を行うためのユーティリティで，
+
+* locale情報やホスト名
+* SSHの公開鍵
+* ネットワーク設定
+
+などの起動後のアクセスに不可欠な準備を行うためのツールとなっています．元々はAWS EC2のために開発されたもののようですが，
+本題から逸れるためここでは割愛します．
+
+Cloud-initでは `user-data` と呼ばれる，
+テキストファイルに記述された[設定データ](https://cloudinit.readthedocs.io/en/latest/explanation/format.html) をもとに動作します．
+詳細は前述のリンク先に割愛しますが，Autoinstallでは `autoinstall` という名前のディレクティブ内に似たフォーマットで設定を記述していきます．
+
+## 簡単なAutoinstallとVirtualBoxでの動作確認
+
+ここでは単純なAutoinstallを準備し，それをもとに仮想マシン内へUbuntu-Serverをインストールすることを試します．
+そのための前準備として， `cloud-localds` コマンドが使える状態にしておく必要があります．ArchLinuxの場合は `cloud-image-utils` パッケージをインストールすると入っています．
+
+### Autoinstallの設定ファイル準備
+
+ここでは簡単のために @lst-user_data で示す設定を用います．
+
+```shell{filename="user-data" #lst-user_data lst-cap="user-data"}
+{{< include user-data >}}
+```
+
+Cloud-initも含めAutoinstallの役割は初期起動に必要な設定を行うことのため，
+[Reference](https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#late-commands) の
+設定可能な項目一覧を見ると種類は少ないことがわかります．（`late-ocmmands` などで複雑な事をさせることはできますがそれはおいといて．．．）
+
+特筆すべき点として，ユーザ情報のパスワード部分についてはハッシュ化されています．
+作り方はいくつかあると思いますが，自分は `mkpasswd -m sha-512` でつくっています．
+`mkpasswd` コマンドはArchLinuxでは　`whois` パッケージに入っています．
+
+この情報からISO9660のファイル形式へ変換して，マウント可能な状態にする必要があります．
+
+```shell
+> cloud-localds user-data.iso user-data
+```
+
+これで設定項目に関する準備は完了です．
+
+### Ubuntu-ServerのISOファイル準備
+
+インストールメディアを作るときと同様，UbuntuのホームページからUbuntu-ServerのISOファイルをダウンロードしてきてください．
+
+### 仮想マシンへのインストール
+
+ここまで来ると残っている作業は単純です．
+
+1. まずVirtualBox等で適当なサイズの仮想マシンを作りましょう
+1. 仮想マシン個別の `Settings > Storage` 項目を開いて
+1. `adds optical drive` で以下2つのファイルを追加しましょう
+    * Ubuntu-ServerのISOファイル
+    * 作成した `user-data.iso`
+1. 仮想マシンをスタートしましょう．色々ロードされたのち， `Continue with autoinstall? (yes/no)` と表示されるので，回答すると処理が進みます．
+
+
+## まとめと雑談
+
+この記事ではsubiquityのAutoinstall機能を使って，
+事前設定した項目に基づいたインストールを進めるための手引きを説明しました．
+ストレージのパーティション構成などは個別に考える必要がありますが，
+特別なことをしないのであればあとはSSH接続してAnsibleで詳細なセットアップをすればよいと思います．
+
+という感じでUbuntuでIaCするための1st Stepをまとめましたが，個人的にはNixOSの方が好みです．
+ただ他の人へ引き継ぐことを考えると選択肢に挙げにくい現状で悲しいです．AnsibleでなくPuppetを使えば
+宣言的なセットアップができるのかもしれないですが，触ってこなかったので当面は放置です．
