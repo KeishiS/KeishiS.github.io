@@ -17,7 +17,7 @@ autoinstall:
   ssh:
     install_server: true
     authorized-keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICLPYWxCTckCVdDiBpiKWE8omDndrvQhWkscX8uIyd1j openpgp:0xD1E438FC
+      - ssh-ed25519 AAxxxxx.....
   locale: en_US
   keyboard:
     layout: jp
@@ -25,7 +25,5 @@ autoinstall:
   packages:
     - git
   snaps:
-    - name: helix
-      classic: true
     - name: nvim
       classic: true

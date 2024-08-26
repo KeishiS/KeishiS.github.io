@@ -2,7 +2,7 @@
 title: "UbuntuでAutoinstall"
 description: "subiquityの自動インストール機能でyamlファイルからプロビジョニング"
 author: "KeishiS"
-date: "2024-08-20T20:00:00"
+date: "2024-08-26T23:30:00"
 categories: [computer]
 image: "../../assets/computer.png"
 ---
@@ -78,10 +78,10 @@ Cloud-initでは `user-data` と呼ばれる，
 
 ### Autoinstallの設定ファイル準備
 
-ここでは簡単のために @lst-simple_user_data で示す設定を用います．
+ここでは簡単のために @lst-user_data で示す設定を用います．
 
-```shell{filename="user-data" #lst-simple_user_data lst-cap="user-data"}
-{{< include simple_user-data >}}
+```shell{filename="user-data" #lst-user_data lst-cap="user-data"}
+{{< include user-data >}}
 ```
 
 Cloud-initも含めAutoinstallの役割は初期起動に必要な設定を行うことのため，
@@ -113,16 +113,15 @@ Cloud-initも含めAutoinstallの役割は初期起動に必要な設定を行�
 1. `adds optical drive` で以下2つのファイルを追加しましょう
     * Ubuntu-ServerのISOファイル
     * 作成した `user-data.iso`
-1. 仮想マシンをスタートしましょう
+1. 仮想マシンをスタートしましょう．色々ロードされたのち， `Continue with autoinstall? (yes/no)` と表示されるので，回答すると処理が進みます．
 
-
-:::{.callout-note}
-### 小まとめ
-
-hoge
-:::
 
 ## まとめと雑談
+
+この記事ではsubiquityのAutoinstall機能を使って，
+事前設定した項目に基づいたインストールを進めるための手引きを説明しました．
+ストレージのパーティション構成などは個別に考える必要がありますが，
+特別なことをしないのであればあとはSSH接続してAnsibleで詳細なセットアップをすればよいと思います．
 
 という感じでUbuntuでIaCするための1st Stepをまとめましたが，個人的にはNixOSの方が好みです．
 ただ他の人へ引き継ぐことを考えると選択肢に挙げにくい現状で悲しいです．AnsibleでなくPuppetを使えば
