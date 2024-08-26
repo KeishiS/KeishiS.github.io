@@ -81,7 +81,35 @@ Cloud-initでは `user-data` と呼ばれる，
 ここでは簡単のために @lst-user_data で示す設定を用います．
 
 ```shell{filename="user-data" #lst-user_data lst-cap="user-data"}
-{{< include user-data >}}
+#cloud-config
+autoinstall:
+  version: 1
+  refresh-installer:
+    update: true
+  identity:
+    hostname: ubuntu-keishis-vm
+    username: keishis
+    password: "$6$FlXH7/vER13wjoQx$.cavce116EUsRWISViNr1AkURrCWFL6bCMr3xv9xPAI77v7obknrnKNNsth9zVcMnUpUDFjFtT492Vi3Gxbqo0"
+  source:
+    id: ubuntu-server
+    search_drivers: true
+  apt:
+    preserve_sources_list: false
+    geoip: true
+    fallback: abort
+  ssh:
+    install_server: true
+    authorized-keys:
+      - ssh-ed25519 AAxxxxx.....
+  locale: en_US
+  keyboard:
+    layout: jp
+  timezone: Asia/Tokyo
+  packages:
+    - git
+  snaps:
+    - name: nvim
+      classic: true
 ```
 
 Cloud-initも含めAutoinstallの役割は初期起動に必要な設定を行うことのため，
