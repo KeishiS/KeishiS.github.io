@@ -1,7 +1,9 @@
 project:
   type: website
   output-dir: docs
-  resources: .well-known
+  resources:
+    - .well-known
+    - assets
 
 website:
   title: "KeishiS.github.io"
