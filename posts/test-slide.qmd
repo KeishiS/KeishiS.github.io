@@ -1,0 +1,18 @@
+---
+title: "[テスト] スライドを含む記事の作成"
+description: "qmdファイルを使って，スライドを含む記事を作成する際の参考ページ"
+author: KeishiS
+date: 2024-08-30T00:00:00
+categories: [Quarto]
+image: /assets/computer.png
+---
+
+## スライドの埋め込み
+
+<div>
+
+```{=html}
+<iframe class="slide-deck" src="/slides/demo"></iframe>
+```
+
+</div>

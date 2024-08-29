@@ -1,10 +1,10 @@
 ---
 title: "title"
 description: "description"
-author: "KeishiS"
-date: "YYY-mm-ddTHH:MM:SS"
+author: KeishiS
+date: YYYY-mm-ddTHH:MM:SS
 categories: [computer]
-image: "../../assets/computer.png"
+image: /assets/computer.png
 ---
 
 ## 導入

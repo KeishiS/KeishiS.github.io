@@ -7,3 +7,8 @@ dt {
 dd {
     margin-left: 20px;
 }
+
+.slide-deck {
+    width: 100%;
+    height: 475px;
+}

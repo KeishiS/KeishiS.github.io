@@ -1,0 +1,5 @@
+author: KeishiS
+format:
+  revealjs:
+    slide-number: true
+    theme: night
