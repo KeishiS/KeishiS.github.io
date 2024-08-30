@@ -2,4 +2,6 @@ author: KeishiS
 format:
   revealjs:
     slide-number: true
+    number-sections: true
     theme: night
+    width: 100%
