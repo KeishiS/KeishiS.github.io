@@ -4,6 +4,8 @@ project:
   resources:
     - .well-known
     - assets
+  preview:
+    port: 3000
 
 website:
   title: "KeishiS.github.io"

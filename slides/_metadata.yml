@@ -3,3 +3,5 @@ format:
   revealjs:
     slide-number: true
     theme: night
+    width: 1600
+    height: 900
