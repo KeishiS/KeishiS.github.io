@@ -7,19 +7,25 @@ using JuMP, Clp
 dataset = MNIST(:train)
 id_one = 7 # findfirst(dataset.targets .== 1)
 id_two = 26 # findfirst(dataset.targets .== 2)
+id_three = findfirst(dataset.targets .== 3)
 
 #%%
 one = Matrix(dataset.features[:, :, id_one]')
 two = Matrix(dataset.features[:, :, id_two]')
+three = Matrix(dataset.features[:, :, id_three]')
 
 one_vec = vec(one)
 two_vec = vec(two)
+three_vec = vec(three)
 
 #%%
 colorview(Gray, one)
 
 #%%
-colorview(Gray, two) .* two_amount
+colorview(Gray, two)
+
+#%%
+colorview(Gray, three)
 
 #%%
 dim = 28
@@ -64,43 +70,37 @@ end
 #%%
 n = 50
 λs = range(0, 1, length=n)
-mids = zeros(Float64, n, dim, dim)
+mids = zeros(Float64, dim, dim, n)
 
+#%%
 for i in 1:n
     λ = λs[i]
-    mids[i, :, :] .= gen_quant(one_vec, two_vec, C, λ)
-end
-
-#%% 一度にすべての分布を求める
-function gen_seq(α, β, C, n)
-    amount_α = sum(α)
-    amount_β = sum(β)
-    α = α ./ amount_α
-    β = β ./ amount_β
-
-    model = Model(Clp.Optimizer)
-    @variable(model, P[1:siz, 1:siz, 1:n] .>= 0)
-    @objective(model, Min,
-        sum(dot(C, P[:, :, k]) for k in 1:n)
-    )
-    @constraint(model, P[:, :, 1] * ones(siz) .== α)
-    @constraint(model, P[:, :, n]' * ones(siz) .== β)
-    for k in 1:n-1
-        @constraint(model, P[:, :, k]' * ones(siz) .== P[:, :, k+1] * ones(siz))
-    end
-    for k in 1:n
-        @constraint(model, sum(P[:, :, k]) == 1.0)
-    end
-
-    optimize!(model)
-    if termination_status(model) != OPTIMAL
-        throw(ErrorException("wrong"))
-    end
-
-    value.(P)
+    mids[:, :, i] .= gen_quant(one_vec, two_vec, C, λ)
 end
 
 #%%
-ret = gen_seq(one_vec, two_vec, C, 30)
+function gen_quant2(α, β, C, λ; ϵ=1, n_loop=50)
+    K = exp.(-C ./ ϵ)
+    u = ones(Float64, siz, 2)
+    v = zeros(Float64, siz, 2)
+    for _ in 1:n_loop
+        v[:, 1] = α ./ (K' * u[:, 1])
+        v[:, 2] = β ./ (K' * u[:, 2])
+
+        tmp = ((K * v[:, 1]) .^ (1 - λ)) .* ((K * v[:, 2]) .^ λ)
+        u[:, 1] = tmp ./ (K * v[:, 1])
+        u[:, 2] = tmp ./ (K * v[:, 2])
+    end
+
+    ((K * v[:, 1]) .^ (1 - λ)) .* ((K * v[:, 2]) .^ λ)
+end
 
 #%%
+mids = zeros(Float64, dim, dim, n)
+for i in 1:n
+    λ = λs[i]
+    ret = gen_quant2(two_vec, three_vec, C, λ; ϵ=1)
+    mids[:, :, i] = reshape(ret, dim, dim)
+    mids[:, :, i] = mids[:, :, i] ./ maximum(mids[:, :, i])
+    save("./out/mid_$(lpad(i, 2, '0')).png", colorview(Gray, mids[:, :, i]))
+end

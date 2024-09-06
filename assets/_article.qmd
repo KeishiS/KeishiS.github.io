@@ -3,7 +3,7 @@ title: "title"
 description: "description"
 author: KeishiS
 date: YYYY-mm-ddTHH:MM:SS
-categories: [computer]
+categories: [Computer]
 image: /assets/computer.png
 ---
 

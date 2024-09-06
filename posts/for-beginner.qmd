@@ -1,0 +1,27 @@
+---
+title: "[TBD] パソコン初学者に向けた資料作成"
+description: "TBD"
+author: KeishiS
+date: 2024-09-07TH04:00:00
+categories: [Computer]
+image: /assets/computer.png
+---
+
+## 導入
+
+パソコン初学者に向けた資料を作ろうと思ったものの，意外と難しいため，随時更新するために残しておきます．
+
+## 資料本体
+
+<div>
+
+```{=html}
+<iframe class="slide-deck" src="/slides/Forbeginner"></iframe>
+```
+
+</div>
+
+
+## 図表まとめ
+
+![](/assets/out.gif){width="300" height="300"}
