@@ -9,12 +9,16 @@ project:
 
 website:
   title: "KeishiS.github.io"
+  site-url: https://www.keishis.xyz
+  description: "Vitae website for KeishiS, including some technology articles"
   navbar:
     right:
       - text: "Posts"
         href: posts.qmd
       - icon: github
         href: https://github.com/KeishiS/keishis.github.io
+      - icon: rss
+        href: index.xml
 format:
   html:
     theme: lux
