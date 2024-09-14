@@ -2,6 +2,6 @@ author: KeishiS
 format:
   revealjs:
     slide-number: true
-    theme: night
+    theme: sky
     width: 1600
     height: 900

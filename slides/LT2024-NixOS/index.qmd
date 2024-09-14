@@ -1,0 +1,75 @@
+---
+title: "すごいNixOS たのしく学ぼう"
+date: 2024-09-21T00:00:00
+institute: Ph.D. student @ SOKENDAI
+---
+
+## スピーカー is 誰？
+
+氏名
+: 三戸 圭史 (Keishi Sando)
+
+所属
+: 総研大 統計科学コースD2
+
+専門
+: 統計的機械学習, コンピュータサイエンス
+
+いわきとの繋がり
+: 出生地 && 磐城高校卒業
+
+## [NixOS](https://nixos.org/)って何？
+
+:::{.callout-caution appearance="simple" icon=false}
+### Linuxあるある
+
+* どこにどんな設定・変更をしたか忘れる
+* 前の状態に戻すのが面倒
+
+プロビジョニングツールも整備されてきたが，クラウド環境向けに偏ってる
+:::
+
+:::{.callout-note appearance="simple" icon=false}
+### NixOS : `Nix` パッケージマネージャを軸にしたLinuxディストリビューション
+
+* 既存の設計思想から脱却したdistro (e.g., HFSに準拠しない等)
+* あらゆる設定をコードに記述
+* 複数Ver.共存によるDependency Hellの回避
+* 過去の状態への簡単なロールバック
+:::
+
+## NixOSの設定ファイルってどんな感じ？
+
+```sh
+...
+    time.timeZone = "Asia/Tokyo";
+    security.sudo.wheelNeedsPassword = false;
+    i18n.defaultLocale = "en_US.UTF-8";
+    console = {
+        font = "Lat2-Terminus16";
+        keyMap = "jp106";
+    };
+    users.users.sandi = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "networkmanager" ];
+        shell = pkgs.zsh;
+        initialHashedPassword = "$6$ooF34UYo....";
+        openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1N...." ];
+    };
+...
+```
+
+スピーカーの環境は `https://github.com/KeishiS/home-network` で見れます
+
+## NixOSは誰にオススメか？
+
+:::{.callout-tip appearance="simple" icon=false}
+### 自宅サーバの管理が楽
+
+* 頻繁に触らないので設定内容を忘れがち
+    * **コード管理できるので漏れがなくなる！**
+* StatefulなのでAnsible等が使いにくい
+    * **設定のコードが手続き型ではなく宣言型なのでStateless**
+:::
+
+まずは仮想マシン内で使ってみてください！
