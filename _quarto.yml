@@ -4,6 +4,7 @@ project:
   resources:
     - .well-known
     - assets
+    - robots.txt
   preview:
     port: 3000
 

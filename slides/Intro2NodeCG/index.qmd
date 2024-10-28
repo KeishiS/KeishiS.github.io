@@ -1,0 +1,87 @@
+---
+title: "賑やかな配信を支える技術"
+subtitle: "LTを盛り上げるためのアレコレ"
+date: 2024-10-29T00:00:00
+institute: Ph.D. student @ SOKENDAI
+---
+
+## スピーカー is 誰？
+
+氏名
+: 三戸 圭史 (Keishi Sando)
+
+所属
+: 総研大 統計科学コースD4
+
+専門
+: 統計的機械学習, コンピュータサイエンス
+
+研究対象
+: 関係データ(特にグラフデータ)を対象とした機械学習
+
+
+## 今日の話は何？
+
+:::{.callout-caution appearance="simple" icon=false}
+### オンラインプレゼン，マンネリ化してません？
+
+* コロナ以降増えた，カンファレンスでのビデオプレゼン
+* ワークショップでのオンライン中継
+* 学生同士の勉強会 etc...
+
+内容は違えど，同じような画面が続いて単調．．．飽きてくる．．．
+:::
+
+:::{.callout-note appearance="simple" icon=false}
+### NodeCG + OBSで自由に画面構成！
+
+* YouTuberみたいな画面が作れる！
+* 既存の配信ツールでは実現できない事が（根性で）実装可能！
+* 今日の配信もこちらでお届け！
+:::
+
+## それって何？
+
+:::{.callout-note appearance="simple" icon=false}
+### NodeCG
+
+> NodeCG is a broadcast graphics framework and application. It enables you to write complex, dynamic broadcast graphics using the web platform.
+
+_webの技術で配信画面を作るためのフレームワーク_ とのこと
+:::
+
+:::{.callout-note appearance="simple" icon=false}
+### OBS (Open Broadcaster Software)
+
+> Free and open source software for video recording and live streaming.
+
+_動画作成したり，ライブ配信するためのソフトウェア_ とのこと
+:::
+
+![](assets/obs.png)
+
+## 今日の配信環境どうなってんの？
+
+![](assets/construction.jpg)
+
+結構面倒 🤣
+
+## 今後やりたい事
+
+:::{.callout-note appearance="simple" icon=false}
+### いずれ実装
+
+* LT用タイマー表示
+* zoomのコメント欄表示
+* 手を上げている人がいればポップアップしたり
+* 特定の文字列をコメントすると画面が変化するとか
+:::
+
+:::{.callout-caution appearance="simple" icon=false}
+### 結構ムズい事
+
+* オンライン上のLT発表者の画面統合がムズい
+    * 人類みなOBSを使うようになると楽
+:::
+
+結論：もっとLTが楽しくなるように実装するので，皆LTしよう！
