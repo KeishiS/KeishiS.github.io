@@ -1,6 +1,6 @@
 ---
-title: Main Title
-subtitle: Subtitle
+title: "Main Title"
+subtitle: "Subtitle"
 date: YYYY-mm-ddTHH:MM:SS
 institute: Ph.D. student @ SOKENDAI
 ---

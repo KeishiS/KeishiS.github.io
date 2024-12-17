@@ -62,5 +62,6 @@ Awards
 
 ## LT資料一覧
 
+* [『論文執筆を楽にするツール紹介』](/slides/sokendaiLT02/) 2024.12
 * [『賑やかな配信を支える技術』](/slides/Intro2NodeCG/) 2024.10
 * [『すごいNixOSたのしく学ぼう』](/slides/LT2024-NixOS) 2024.09
