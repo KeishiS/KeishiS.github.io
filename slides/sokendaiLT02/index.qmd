@@ -1,0 +1,137 @@
+---
+title: "論文執筆を楽にするツール紹介"
+date: 2024-12-18T16:00:00
+institute: Ph.D. student @ SOKENDAI
+---
+
+## 今日のおしながき
+
+* 個別のおすすめツール
+* LaTeX と VSCode
+* GitHub で執筆管理
+
+## 個別のおすすめツール： Overleaf
+
+![](https://images.ctfassets.net/nrgyaltdicpt/1J4QC1FAdsyTZ4bCzHB84N/d5cb0409b631854bfacf81a7dd2189fc/overleaf-logo-primary.png)
+
+* 言わずと知れたブラウザベースのLaTeXエディタ
+* 複数の人と手軽にtexファイルを共同編集できる
+* (多少の不便はあるが) GitHub との連携も可能
+
+## 個別のおすすめツール： Paperpile
+
+![](https://pbs.twimg.com/profile_images/844157466350895105/WnZyaAjx_400x400.jpg)
+
+* 文献管理サービス
+  * 類似ソフトには "zotero" や "mendeley" など
+* Google ChromeユーザならExtensionで手軽に論文登録が可能
+* Googleドライブでpdfファイルを管理できるので色んな端末へ簡単に移せる
+* タグ付け・フォルダ分け機能が充実
+
+## 個別のおすすめツール：Connected Papers
+
+![](https://pbs.twimg.com/profile_images/1267529009409208325/avWQ0zGg_400x400.jpg)
+
+* 論文検索サービス
+  * 指定した論文の関連論文をvisualizeしてくれる
+* 研究初期でざっくり関連研究を調べたい時に便利
+
+## 個別のおすすめツール：Semantic Scholar
+
+![](https://pbs.twimg.com/profile_images/1304515818219216897/ns73Z_GS_400x400.png)
+
+* 論文検索サービス
+  * Microsoft Academic Serviceがサ終以来使ってる
+  * 被引用論文を探したい時に便利
+
+## 個別のおすすめツール：Perplexity AI, Elicit
+
+![](https://pbs.twimg.com/profile_images/1863985556100644869/OAb8LODV_400x400.jpg)
+![](https://pbs.twimg.com/profile_images/1705327033533030400/MCsBdMk1_400x400.png)
+
+* いわゆる，AI-assisted searching engine
+* ざっくり「こんな研究ある？」をテキストで投げてサーベイしたい時に使う
+
+## 個別のおすすめツール：Linear
+
+![](https://pbs.twimg.com/profile_images/1776261163694571520/Uz_Fg65U_400x400.jpg)
+
+* プロジェクト管理ツール (TODO管理)
+  * 類似サービスに "Jira", "asana", "Backlog"
+* `Todo, In Progress, Blocking, Done` などのステータスに分けてタスクを管理
+* やることができたらとりあえずチケット発行して，忘れないようにする
+
+## 個別のおすすめツール：Kibela, notion
+
+![](https://pbs.twimg.com/profile_images/780395300997312512/Ve8ZHaFx_400x400.jpg)
+![](https://pbs.twimg.com/profile_images/1844183087313522688/u2SO-90f_400x400.jpg)
+
+* ドキュメント管理・共有サービス
+* Tipsやアイディアを書き出す場所として便利
+
+## LaTeXとVSCode
+
+Overleafの利用が主流になったが，ローカル環境を整備した方が自由度が高まる
+
+* Overleafの欠点 😡
+  * バージョン管理機能が不十分：タグ付けやブランチ管理
+  * コメント機能が見づらい：+α的な位置づけなので，使いやすいとは言えない
+  * ショートカットが限定的：ブラウザのショートカットと干渉してEditing Experienceが悪い
+
+
+→ GitHub連携 + ローカルでのLaTeXにより上記の問題は解決可能
+
+## LaTeXとVSCode
+
+[https://github.com/KeishiS/latex-template](https://github.com/KeishiS/latex-template)
+
+ミニマムなファイルと設定を置いた個人のテンプレート
+
+* VSCodeで編集すると利便性が高い
+* 絶対に `latexmkrc` は設定すべき
+  * pdf生成は `latexmk` コマンドを使うとReproducibility↑↑
+  * `-interaction=nonstopmode` 引数は (個人的に) 悪手．<br>
+    エラーを無視してはいけない，常に潰すべし
+
+
+## LaTeX と VSCode
+
+* VSCode は便利だが， LaTeX 用途の設定をきちんとするのは結構難しい
+* 主流な拡張機能 `LaTeX Workshop` の広すぎる守備範囲が一因
+
+→ `LTEX+` と `TexLab` の組み合わせがオススメ！
+
+![](https://ltex-plus.gallerycdn.vsassets.io/extensions/ltex-plus/vscode-ltex-plus/15.3.0/1732737929220/Microsoft.VisualStudio.Services.Icons.Default)
+![](https://efoerster.gallerycdn.vsassets.io/extensions/efoerster/texlab/5.21.0/1729948990067/Microsoft.VisualStudio.Services.Icons.Default)
+
+## LaTeX と VSCode
+
+エディタにサポートしてほしい機能
+
+* コード整形 (コードフォーマッタ)
+* 静的解析 (リンター)
+* コード補完
+* 誤字指摘
+
+`LaTeX Workshop` は多彩な機能を提供
+
+* 上記のうち上3つ，自動コンパイルやpdf表示，数式のプレビュー，etc ...
+* 多彩すぎて，特にコンパイル部分の設定ミスで，無限にコンパイルエラー通知 ...
+* Typo 検出は別途ツールを追加する必要がある
+
+## LaTeX と VSCode
+
+`LTEX+` と `TexLab` で機能を絞って手軽に管理
+
+* `TexLab` : LaTeX の _Language Server protocol_ 実装
+  * コード補完や reference へのジャンプ，コード整形の機能などを提供
+* `LTEX+` : 文章の文法や誤字をチェックする拡張機能
+
+**デモ**
+
+## GitHub で執筆管理
+
+* 初版，赤入れ修正版，二版，最終版， etc... のようにタグ付けして，すぐ過去の状態に戻れるようにしたい
+* 論文誌とのやりとりの際に，前回との差分を提出する必要がある
+
+**デモ**
