@@ -1,0 +1,36 @@
+---
+title: "LTのためのコメント欄実装"
+date: 2025-03-07T17:00:00
+institute: Ph.D. student @ ISM
+---
+
+## 今日のおしながき
+
+* コメント機能のデモ
+* 実装詳細
+* 次の構想
+
+## コメント機能のデモ
+
+皆さんもzoomのchat欄に書き込んでみてください
+
+## 実装詳細
+
+zoom webhook + NodeCG
+![](assets/image.png)
+
+## 実装詳細：コメント取得部分
+
+作り方は大体 [zoom公式リファレンス](https://developers.zoom.us/docs/api/webhooks/) に記載されている
+
+実装したコードは [GitHub](https://github.com/KeishiS/lt-bundle) で公開中
+
+1. zoom app marketplace でメッセージ受信権限のあるアプリを登録
+1. コメントが送られた際に通知を受け取る機能を実装
+1. 受け取ったコメントを画面上に表示するためにReactコード修正
+
+## 次の構想
+
+**欲しい機能は実装できたので次のバージョンアップは未定です**
+
+面白そうなアイディアがあれば教えてください．余裕があれば実装します．
