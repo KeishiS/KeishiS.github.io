@@ -31,6 +31,7 @@ Interests
 : * Competitive programming
 
 Journal Papers
+: * Keishi Sando, Hideitsu Hino, "Complex non-backtracking matrix for directed graphs", Journal of Complex Networks, 2025.03, accepted
 : * Keishi Sando, Hideitsu Hino, "Modal Principal Component Analysis", Neural Computation, 2020.10
 : * Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, "Information Geometry of Modal Linear Regression", Information Geometry, 2019.06
 
@@ -60,8 +61,9 @@ Awards
 | Apr 2020 - Feb 2021 | System Engineer @ telecommunication company |
 | Apr 2018 - Mar 2020 | Master's course @ University of Tsukuba |
 
-## LT資料一覧
+## その他
 
+* [QWERTY配列より効率的なキー配列最適化のためのタイピングサイト](https://keylytix.app) 2025.05-
 * [『論文執筆を楽にするツール紹介』](/slides/sokendaiLT02/) 2024.12
 * [『賑やかな配信を支える技術』](/slides/Intro2NodeCG/) 2024.10
 * [『すごいNixOSたのしく学ぼう』](/slides/LT2024-NixOS) 2024.09
