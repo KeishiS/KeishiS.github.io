@@ -90,7 +90,7 @@ Gromov-Wasserstein (GW) 自体の知名度があまり高くないかもしれ�
 
 このように記号をおくことで，キー配列最適化をGromov-Wassersteinの枠組みへ落とし込むことができます．
 $$
-\min_{\pi \in \Pi} \sum_{c_1, c_2 \in \Lambda} \sum_{d_1, d_2 \in \Gamma} \left( C_{c_1 c_2} - D_{d_1 d_2} \right)^2 \pi_{c_1 d_1} \pi_{c_2 d_2},
+\min_{\pi \in \Pi(\mu, \nu)} \sum_{c_1, c_2 \in \Lambda} \sum_{d_1, d_2 \in \Gamma} \left( C_{c_1 c_2} - D_{d_1 d_2} \right)^2 \pi_{c_1 d_1} \pi_{c_2 d_2},
 $$
 ここで $\pi$ は $\mu$ と $\nu$ のカップリングと呼ばれるものです．
 これを最適にするカップリングを求めたうえで， [scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html) などを使い割当問題を解いてマッチングを得ます．
