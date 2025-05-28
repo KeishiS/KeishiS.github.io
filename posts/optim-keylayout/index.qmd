@@ -95,7 +95,7 @@ $$
 ここで $\pi$ は $\mu$ と $\nu$ のカップリングと呼ばれるものです．
 これを最適にするカップリングを求めたうえで， [scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html) などを使い割当問題を解いてマッチングを得ます．
 
-## タイピングサイトによる収集データ
+## タイピングサイトによるデータ収集
 
 先程の設定のうち，データセットから収集できないのは **物理キーにおける遷移時間** です．
 実際の機械学習プロジェクトでもよくありますが，最も苦労するのは定式化でも最適化でもなくデータ収集だったりします．
