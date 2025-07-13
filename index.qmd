@@ -13,6 +13,9 @@ about:
     - icon: key
       text: Keybase
       href: https://keybase.io/keishis
+    - icon: orcid
+      text: ORCiD
+      href: https://orcid.org/0009-0003-1849-5486
 format:
   html:
     page-layout: full
@@ -31,12 +34,12 @@ Interests
 : * Competitive programming
 
 Journal Papers
-: * Keishi Sando, Hideitsu Hino, "Complex non-backtracking matrix for directed graphs", Journal of Complex Networks, 2025.03, accepted
-: * Keishi Sando, Hideitsu Hino, "Modal Principal Component Analysis", Neural Computation, 2020.10
-: * Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, "Information Geometry of Modal Linear Regression", Information Geometry, 2019.06
+: * Keishi Sando, Hideitsu Hino, "Complex non-backtracking matrix for directed graphs", Journal of Complex Networks, 2025.03, DOI: [10.1093/comnet/cnaf012](https://doi.org/10.1093/comnet/cnaf012)
+: * Keishi Sando, Hideitsu Hino, "Modal Principal Component Analysis", Neural Computation, 2020.10, DOI: [10.1162/neco_a_01308](https://doi.org/10.1162/neco_a_01308)
+: * Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, "Information Geometry of Modal Linear Regression", Information Geometry, 2019.06, DOI: [10.1007/s41884-019-00017-y](https://doi.org/10.1007/s41884-019-00017-y)
 
 Refered International Conferences
-: * Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, "Information Geometric Perspective of Modal Linear Regression", The 25th International Conference on Neural Information Processing (ICONIP2018), 2018.12 (Siem Reap, Cambodia)
+: * Keishi Sando, Shotaro Akaho, Noboru Murata, Hideitsu Hino, "Information Geometric Perspective of Modal Linear Regression", The 25th International Conference on Neural Information Processing (ICONIP2018), 2018.12 (Siem Reap, Cambodia), DOI: [10.1007/978-3-030-04182-3_47](https://doi.org/10.1007/978-3-030-04182-3_47)
 
 International Conferences
 : * Keishi Sando, Hideitsu Hino, "Complex non-backtracking matrix for directed graphs and its
